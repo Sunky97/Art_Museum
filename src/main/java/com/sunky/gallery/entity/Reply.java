@@ -21,6 +21,6 @@ public class Reply extends BaseEntity{
     private String replyer;
 
     @ManyToOne
-    private Picture picture;
+    private Art art;
 
 }
