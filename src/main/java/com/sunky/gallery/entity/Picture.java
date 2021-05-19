@@ -9,18 +9,17 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "picture")
-public class Reply extends BaseEntity{
+@ToString(exclude = "writer")
+public class Picture {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long rno;
+    private Long pno;
 
-    private String text;
+    private String title;
 
-    private String replyer;
+    private String content;
 
     @ManyToOne
-    private
-
+    private Member writer;
 }
