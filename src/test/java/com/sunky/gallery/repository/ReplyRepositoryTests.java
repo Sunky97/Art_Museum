@@ -1,6 +1,6 @@
 package com.sunky.gallery.repository;
 
-import com.sunky.gallery.entity.Art;
+import com.sunky.gallery.entity.Board;
 import com.sunky.gallery.entity.Reply;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +21,11 @@ public class ReplyRepositoryTests {
         IntStream.rangeClosed(1, 300).forEach(i ->{
             long pno = (long)(Math.random()*100)+1;
 
-            Art art = Art.builder().pno(pno).build();
+            Board board = Board.builder().pno(pno).build();
 
             Reply reply = Reply.builder()
                     .text("Reply.."+i)
-                    .art(art)
+                    .board(board)
                     .replyer("guest"+pno)
                     .build();
 
@@ -41,6 +41,6 @@ public class ReplyRepositoryTests {
         Reply reply = result.get();
 
         System.out.println(reply);
-        System.out.println(reply.getArt());
+        System.out.println(reply.getBoard());
     }
 }

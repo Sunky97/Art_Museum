@@ -9,7 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "art")
+@ToString(exclude = "board")
 public class Reply extends BaseEntity{
 
     @Id
@@ -21,6 +21,6 @@ public class Reply extends BaseEntity{
     private String replyer;
 
     @ManyToOne
-    private Art art;
+    private Board board;
 
 }

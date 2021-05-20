@@ -1,6 +1,6 @@
 package com.sunky.gallery.repository;
 
-import com.sunky.gallery.entity.Art;
+import com.sunky.gallery.entity.Board;
 import com.sunky.gallery.entity.Member;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,25 +17,25 @@ import java.util.Optional;
 import java.util.stream.IntStream;
 
 @SpringBootTest
-public class ArtRepositoryTests {
+public class BoardRepositoryTests {
 
     @Autowired
-    private ArtRepository artRepository;
+    private BoardRepository boardRepository;
 
     @Test
-    public void insertArt(){
+    public void insertBoard(){
 
         IntStream.rangeClosed(1, 100).forEach(i -> {
 
             Member member = Member.builder().email("user"+i+"@aaa.com").build();
 
-            Art art = Art.builder()
+            Board board = Board.builder()
                     .title("Title..."+i)
                     .content("content"+i)
                     .writer(member)
                     .build();
 
-            artRepository.save(art);
+            boardRepository.save(board);
         });
     }
 
@@ -43,18 +43,18 @@ public class ArtRepositoryTests {
     @Transactional
     public void testRead(){
 
-        Optional<Art> result = artRepository.findById(100L);
+        Optional<Board> result = boardRepository.findById(100L);
 
-        Art art = result.get();
+        Board board = result.get();
 
-        System.out.println(art);
-        System.out.println(art.getWriter());
+        System.out.println(board);
+        System.out.println(board.getWriter());
     }
 
     @Test
     public void testReadWithWriter(){
 
-        Object result = artRepository.getArtWithWriter(100L);
+        Object result = boardRepository.getBoardWithWriter(100L);
 
         Object[] arr = (Object[]) result;
 
@@ -63,9 +63,9 @@ public class ArtRepositoryTests {
     }
 
     @Test
-    public void testGetArtWithReply(){
+    public void testGetBoardWithReply(){
 
-        List<Object[]> result = artRepository.getArtWithReply(40L);
+        List<Object[]> result = boardRepository.getBoardWithReply(40L);
 
         for(Object[] arr:result){
             System.out.println(Arrays.toString(arr));
@@ -77,7 +77,7 @@ public class ArtRepositoryTests {
 
         Pageable pageable = PageRequest.of(0,10, Sort.by("pno").descending());
 
-        Page<Object[]> result = artRepository.getArtWithReplyCount(pageable);
+        Page<Object[]> result = boardRepository.getBoardWithReplyCount(pageable);
 
         result.get().forEach(row -> {
 
@@ -90,7 +90,7 @@ public class ArtRepositoryTests {
     @Test
     public void 특정_게시물조회(){
 
-        Object result = artRepository.getArtByPno(100L);
+        Object result = boardRepository.getBoardByPno(100L);
 
         Object[] arr = (Object[]) result;
 

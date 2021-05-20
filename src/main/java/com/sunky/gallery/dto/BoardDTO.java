@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ArtDTO {
+public class BoardDTO {
 
     private Long pno;
 

@@ -1,6 +1,6 @@
 package com.sunky.gallery.service;
 
-import com.sunky.gallery.dto.ArtDTO;
+import com.sunky.gallery.dto.BoardDTO;
 import com.sunky.gallery.dto.PageRequestDTO;
 import com.sunky.gallery.dto.PageResultDTO;
 import org.junit.jupiter.api.Test;
@@ -8,31 +8,31 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-public class ArtServiceTests {
+public class BoardServiceTests {
 
     @Autowired
-    private ArtService artService;
+    private BoardService boardService;
 
     @Test
     public void testRegister(){
 
-        ArtDTO dto = ArtDTO.builder()
+        BoardDTO dto = BoardDTO.builder()
                 .title("test101")
                 .content("test...")
                 .writerEmail("user55@aaa.com")
                 .build();
 
-        Long pno = artService.register(dto);
+        Long pno = boardService.register(dto);
     }
 
     @Test
     public void 게시물_목록(){
         PageRequestDTO pageRequestDTO = new PageRequestDTO();
 
-        PageResultDTO<ArtDTO, Object[]> result = artService.getList(pageRequestDTO);
+        PageResultDTO<BoardDTO, Object[]> result = boardService.getList(pageRequestDTO);
 
-        for(ArtDTO artDTO : result.getDtoList()){
-            System.out.println(artDTO);
+        for(BoardDTO boardDTO : result.getDtoList()){
+            System.out.println(boardDTO);
         }
     }
 
@@ -41,21 +41,21 @@ public class ArtServiceTests {
 
         Long pno = 100L;
 
-        ArtDTO artDTO = artService.get(pno);
+        BoardDTO boardDTO = boardService.get(pno);
 
-        System.out.println(artDTO);
+        System.out.println(boardDTO);
     }
 
     @Test
     public void 댓글삭제(){
-        Long pno = 2L;
-        artService.removeWithReplies(pno);
+        Long pno = 86L;
+        boardService.removeWithReplies(pno);
     }
 
     @Test
     public void 게시글_수정(){
-        ArtDTO artDTO = ArtDTO.builder().pno(2L).title("수정된 제목").content("수정된 내용").build();
+        BoardDTO boardDTO = BoardDTO.builder().pno(2L).title("수정된 제목").content("수정된 내용").build();
 
-        artService.modify(artDTO);
+        boardService.modify(boardDTO);
     }
 }
