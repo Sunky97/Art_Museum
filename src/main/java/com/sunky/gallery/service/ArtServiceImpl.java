@@ -44,4 +44,14 @@ public class ArtServiceImpl implements ArtService{
 
         return new PageResultDTO<>(result, fn);
     }
+
+    @Override
+    public ArtDTO get(Long pno) {
+
+        Object result = repository.getArtByPno(pno);
+
+        Object[] arr = (Object[])result;
+
+        return entityToDTO((Art) arr[0], (Member) arr[1],(Long) arr[2]);
+    }
 }

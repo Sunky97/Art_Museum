@@ -36,4 +36,13 @@ public class ArtServiceTests {
         }
     }
 
+    @Test
+    public void 게시물_조회(){
+
+        Long pno = 100L;
+
+        ArtDTO artDTO = artService.get(pno);
+
+        System.out.println(artDTO);
+    }
 }

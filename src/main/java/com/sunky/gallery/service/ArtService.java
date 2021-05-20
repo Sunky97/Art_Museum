@@ -12,6 +12,8 @@ public interface ArtService {
 
     PageResultDTO<ArtDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
 
+    ArtDTO get(Long pno);
+
     default Art dtoToEntity(ArtDTO dto){
 
         Member member = Member.builder().email(dto.getWriterEmail()).build();
