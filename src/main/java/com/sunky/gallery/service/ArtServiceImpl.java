@@ -6,11 +6,13 @@ import com.sunky.gallery.dto.PageResultDTO;
 import com.sunky.gallery.entity.Art;
 import com.sunky.gallery.entity.Member;
 import com.sunky.gallery.repository.ArtRepository;
+import com.sunky.gallery.repository.ReplyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.function.Function;
 
@@ -20,6 +22,8 @@ import java.util.function.Function;
 public class ArtServiceImpl implements ArtService{
 
     private final ArtRepository repository;
+
+    private final ReplyRepository replyRepository;
 
     @Override
     public Long register(ArtDTO dto){
@@ -53,5 +57,12 @@ public class ArtServiceImpl implements ArtService{
         Object[] arr = (Object[])result;
 
         return entityToDTO((Art) arr[0], (Member) arr[1],(Long) arr[2]);
+    }
+
+    @Override
+    @Transactional
+    public void removeWithReplies(Long pno){
+        replyRepository.deleteByPno(pno);
+        repository.deleteById(pno);
     }
 }

@@ -45,4 +45,10 @@ public class ArtServiceTests {
 
         System.out.println(artDTO);
     }
+
+    @Test
+    public void 댓글삭제(){
+        Long pno = 2L;
+        artService.removeWithReplies(pno);
+    }
 }
