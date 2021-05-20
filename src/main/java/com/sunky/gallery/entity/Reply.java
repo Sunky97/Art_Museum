@@ -9,7 +9,7 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-@ToString(exclude = "picture")
+@ToString(exclude = "art")
 public class Reply extends BaseEntity{
 
     @Id
