@@ -1,6 +1,8 @@
 package com.sunky.gallery.service;
 
 import com.sunky.gallery.dto.ArtDTO;
+import com.sunky.gallery.dto.PageRequestDTO;
+import com.sunky.gallery.dto.PageResultDTO;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,4 +24,16 @@ public class ArtServiceTests {
 
         Long pno = artService.register(dto);
     }
+
+    @Test
+    public void 게시물_목록(){
+        PageRequestDTO pageRequestDTO = new PageRequestDTO();
+
+        PageResultDTO<ArtDTO, Object[]> result = artService.getList(pageRequestDTO);
+
+        for(ArtDTO artDTO : result.getDtoList()){
+            System.out.println(artDTO);
+        }
+    }
+
 }
