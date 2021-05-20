@@ -51,4 +51,11 @@ public class ArtServiceTests {
         Long pno = 2L;
         artService.removeWithReplies(pno);
     }
+
+    @Test
+    public void 게시글_수정(){
+        ArtDTO artDTO = ArtDTO.builder().pno(2L).title("수정된 제목").content("수정된 내용").build();
+
+        artService.modify(artDTO);
+    }
 }

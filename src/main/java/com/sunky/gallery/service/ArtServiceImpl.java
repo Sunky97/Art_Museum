@@ -65,4 +65,15 @@ public class ArtServiceImpl implements ArtService{
         replyRepository.deleteByPno(pno);
         repository.deleteById(pno);
     }
+
+    @Transactional
+    @Override
+    public void modify(ArtDTO artDTO) {
+        Art art = repository.getOne(artDTO.getPno());
+
+        art.changeTitle(artDTO.getTitle());
+        art.changeContent(artDTO.getContent());
+
+        repository.save(art);
+    }
 }

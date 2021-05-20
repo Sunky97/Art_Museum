@@ -16,6 +16,8 @@ public interface ArtService {
 
     void removeWithReplies(Long pno);
 
+    void modify(ArtDTO artDTO);
+
     default Art dtoToEntity(ArtDTO dto){
 
         Member member = Member.builder().email(dto.getWriterEmail()).build();
