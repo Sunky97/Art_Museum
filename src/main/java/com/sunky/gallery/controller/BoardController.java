@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/board/")
+@RequestMapping("/board/*")
 @Log4j2
 @RequiredArgsConstructor
 public class BoardController {
@@ -20,7 +20,8 @@ public class BoardController {
     @GetMapping("/list")
     public void list(PageRequestDTO pageRequestDTO, Model model){
 
-        log.info(pageRequestDTO);
+        log.info("-------------pagerequest"+pageRequestDTO);
+        log.info("-------------"+boardService.getList(pageRequestDTO));
 
         model.addAttribute("result", boardService.getList(pageRequestDTO));
     }
