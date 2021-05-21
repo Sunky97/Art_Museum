@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
+<form action="/board/modify" method="post">
+
+  <input type="hidden" name="page" th:value="${requestDTO.page}">
+  <input type="hidden" name="type" th:value="${requestDTO.type}">
+  <input type="hidden" name="keyword" th:value="${requestDTO.keyword}">
+
+  <div class="form-group">
+    <label>Pno</label>
+    <input type="text" class="form-control" name="pno" th:value="${dto.pno}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label>Title</label>
+    <input type="text" class="form-control" name="title" th:value="${dto.title}">
+  </div>
+
+  <div class="form-group">
+    <label>Content</label>
+    <textarea class="form-control" name="content" rows="5">[[${dto.content}]]</textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Writer</label>
+    <input type="text" class="form-control" name="writer" th:value="${dto.writerEmail}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label>RegDate</label>
+    <input type="text" class="form-control" th:value="${#temporals.format(dto.regDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+  </div>
+
+  <div class="form-group">
+    <label>ModDate</label>
+    <input type="text" class="form-control" th:value="${#temporals.format(dto.modDate, 'yyyy/MM/dd HH:mm:ss')}" readonly>
+  </div>
+
+</form>
+
+<button type="button" class="btn btn-primary modifyBtn">Modify</button>
+<button type="button" class="btn btn-info listBtn">List</button>
+<button type="button" class="btn btn-danger removeBtn">Remove</button>
+
+<script th:inline="javascript">
+
+  let actionForm = $("form");
+
+  $(".removeBtn").click(function(){
+
+    actionForm.attr("action", "/board/remove").attr("method","post");
+
+    actionForm.submit();
+
+  });
+
+  $(".modifyBtn").click(function(){
+    if(!confirm("수정하시겠습니까?")){
+      return;
+    }
+    actionForm.attr("action","/board/modify").attr("method","post").submit();
+
+  });
+
+  $(".listBtn").click(function(){
+
+    let page = $("input[name='page']");
+    let type = $("input[name='type']");
+    let keyword = $("input[name='keyword']");
+
+    actionForm.empty();
+
+    actionForm.append(page);
+    actionForm.append(type);
+    actionForm.append(keyword);
+    actionForm.attr("action","/board/list").attr("method","get");
+    actionForm.submit();
+
+  })
+</script>
+</html>
