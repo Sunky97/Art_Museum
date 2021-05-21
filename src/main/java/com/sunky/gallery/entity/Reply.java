@@ -4,12 +4,7 @@ import lombok.*;
 
 import javax.persistence.*;
 
-@Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
-@Getter
-@ToString(exclude = "board")
+
 public class Reply extends BaseEntity{
 
     @Id
