@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
 import java.util.stream.IntStream;
 
 @SpringBootTest
@@ -35,4 +36,23 @@ public class ReviewRepositoryTests {
             reviewRepository.save(movieReview);
         });
     }
+
+    @Test
+    public void 그림의_모든리뷰_불러오기(){
+
+        Painting painting = Painting.builder().pno(23L).build();
+
+        List<Review> result = reviewRepository.findByPainting(painting);
+
+        result.forEach(paintingReview -> {
+
+            System.out.println("-------------------------------------");
+            System.out.println(paintingReview.getReviewnum());
+            System.out.println(paintingReview.getGrade());
+            System.out.println(paintingReview.getText());
+            System.out.println(paintingReview.getMember().getEmail());
+            System.out.println("-------------------------------------");
+        });
+    }
+
 }

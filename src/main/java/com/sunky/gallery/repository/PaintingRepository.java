@@ -16,8 +16,9 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
             "LEFT OUTER JOIN Review r ON r.painting = p GROUP BY p")
     Page<Object[]> getListPage(Pageable pageable);
 
-    @Query("SELECT p, pi " +
-            " FROM Painting p LEFT OUTER JOIN PaintingImage pi ON pi.painting = p " +
-            " WHERE p.pno = :pno")
+    @Query("SELECT p, pi, avg(coalesce(r.grade,0)), count(r)" +
+            " FROM Painting p LEFT OUTER JOIN PaintingImage pi ON pi.painting = p" +
+            " LEFT OUTER JOIN Review r on r.painting = p" +
+            " WHERE p.pno = :pno GROUP BY pi")
     List<Object[]> getPaintingWithAll(Long pno); // 특정 그림 조회
 }
