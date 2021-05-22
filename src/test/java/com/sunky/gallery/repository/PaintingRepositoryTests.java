@@ -12,6 +12,7 @@ import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 import java.util.stream.IntStream;
 
@@ -50,7 +51,7 @@ public class PaintingRepositoryTests {
     }
 
     @Test
-    public void testListpage(){
+    public void 전체그림_조회(){
 
         PageRequest pageRequest = PageRequest.of(0,10, Sort.by(Sort.Direction.DESC,"pno"));
 
@@ -58,6 +59,18 @@ public class PaintingRepositoryTests {
 
         for(Object[] objects : result.getContent()){
             System.out.println(Arrays.toString(objects));
+        }
+    }
+
+    @Test
+    public void 특정그림_조회(){
+
+        List<Object[]> result = paintingRepository.getPaintingWithAll(85L);
+
+        System.out.println(result);
+
+        for(Object[] arr :result){
+            System.out.println(Arrays.toString(arr));
         }
     }
 }
