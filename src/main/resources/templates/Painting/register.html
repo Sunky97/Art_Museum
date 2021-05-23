@@ -131,7 +131,7 @@
         let str = "";
 
         $(uploadResultArr).each(function(i, obj){
-          str += "<li ata-name='" + obj.fileName + "' data-path = '" + obj.folderPath + "' data-uuid = '" + obj.uuid + "'>";
+          str += "<li data-name='" + obj.fileName + "' data-path = '" + obj.folderPath + "' data-uuid = '" + obj.uuid + "'>";
           str += "<div>";
           str += "<button type='button' data-file=\'" + obj.imageURL + "\' ";
           str += "class='btn-warning btn-sm'>X</button><br>";
@@ -142,6 +142,47 @@
 
         uploadUL.append(str);
       }
+
+
+      $(".uploadResult").on("click", "li button", function(e){
+        let targetFile = $(this).data("file");
+        let targetLi = $(this).closest("li");
+
+        console.log("delete file");
+
+        $.ajax({
+            url: '/removeFile',
+            data: {fileName: targetFile},
+            dataType: 'text',
+            type: 'POST',
+            success: function(result){
+              //alert(result);
+              targetLi.remove();
+            }
+        });
+
+    });
+
+$(".btn-primary").on("click", function(e) {
+          e.preventDefault();
+
+          let str = "";
+
+          $(".uploadResult li").each(function(i, obj){
+            let target = $(obj);
+
+            str += "<input type='hidden' name='imageDTOList["+i+"].imgName' value='"+target.data('name')+"'>";
+            str += "<input type='hidden' name='imageDTOList["+i+"].path' value='"+target.data('path')+"'>";
+            str += "<input type='hidden' name='imageDTOList["+i+"].uuid' value='"+target.data('uuid')+"'>";
+
+          });
+
+          $(".box").html(str);
+
+          $("form").submit();
+
+        });
+
     </script>
   </th:block>
 </html>
