@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+  <th:block th:fragment="content">
+
+      <h1 class="mt-4">Painting Register Page</h1>
+
+    <form th:action="@{/painting/register}" th:method="post">
+      <div class="form-group">
+        <label>Title</label>
+        <input type="text" class="form-control" name="title" placeholder="Enter Title">
+      </div>
+
+      <div class="form-group">
+        <label>Image Files</label>
+        <div class="custom-file">
+          <input type="file" class="custom-file-input files" id="fileInput" multiple>
+          <label class="custom-file-label" data-browse="Browse"></label>
+        </div>
+      </div>
+
+      <div class="box">
+
+      </div>
+
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"
+            integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+            crossorigin="anonymous"></script>
+    <script>
+
+      $(document).ready(function(e){
+
+      });
+    </script>
+  </th:block>
+</html>
