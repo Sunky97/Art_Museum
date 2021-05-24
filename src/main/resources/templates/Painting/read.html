@@ -228,7 +228,42 @@
 
         $('.reviewModal').modal('show');
       });
+
+      $(".modifyBtn").on("click", function(){
+        let data = {reviewnum: reivewnum, pno:pno, grade:grade, text:inputText.val(), mid: inputMid.val()};
+        console.log(data);
+
+        $.ajax({
+          url:'/reviews/'+pno+"/"+reviewnum,
+          type:"PUT",
+          data:JSON.stringify(data),
+          contentType:"application/json; charset=utf-8",
+          dataType:"text",
+          success:function(result){
+            console.log("result"+result);
+            self.location.reload();
+          }
+        })
+        reviewModal.modal('hide');
+      });
+
+      $(".removeBtn").on("click",function(){
+        let data = {reviewnum: reviewnum};
+        console.log(data);
+
+        $.ajax({
+          url:'/reviews/'+pno+'/'+reviewnum,
+          type:'DELETE',
+          contentType:"application/json; charset=utf-8",
+          dataType:"text",
+          success: function(result){
+            console.log("result: " + result);
+            self.location.reload();
+          }
+        })
+      reviewModal.modal('hide');
     });
+  });
   </script>
 </th:block>
 </th:block>
