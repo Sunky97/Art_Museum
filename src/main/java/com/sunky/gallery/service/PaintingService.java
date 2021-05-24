@@ -13,9 +13,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 public interface PaintingService {
+
     Long register(PaintingDTO paintingDTO);
 
     PageResultDTO<PaintingDTO, Object[]> getList(PageRequestDTO pageRequestDTO);
+
+    PaintingDTO getPainting(Long pno);
 
     default PaintingDTO entitiesToDTO(Painting painting, List<PaintingImage> paintingImages, Double avg, Long reviewCnt){
         PaintingDTO paintingDTO = PaintingDTO.builder()

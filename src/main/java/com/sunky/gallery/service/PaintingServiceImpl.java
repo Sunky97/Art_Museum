@@ -15,6 +15,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -61,4 +62,23 @@ public class PaintingServiceImpl implements PaintingService{
         return new PageResultDTO<>(result,fn);
     }
 
+    @Override
+    public PaintingDTO getPainting(Long pno){
+
+        List<Object[]> result = paintingRepository.getPaintingWithAll(pno);
+
+        Painting painting = (Painting) result.get(0)[0];
+
+        List<PaintingImage> paintingImageList = new ArrayList<>();
+
+        result.forEach(arr -> {
+            PaintingImage paintingImage = (PaintingImage) arr[1];
+            paintingImageList.add(paintingImage);
+        });
+
+        Double avg = (Double) result.get(0)[2];
+        Long reviewCnt = (Long) result.get(0)[3];
+
+        return entitiesToDTO(painting, paintingImageList, avg, reviewCnt);
+    }
 }
