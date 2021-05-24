@@ -25,6 +25,7 @@
   }
 </style>
 
+<th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
   <th:block th:fragment="content">
 
       <h1 class="mt-4">Painting Register Page</h1>
@@ -190,4 +191,5 @@ $(".btn-primary").on("click", function(e) {
 
     </script>
   </th:block>
+</th:block>
 </html>
