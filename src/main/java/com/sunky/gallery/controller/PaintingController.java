@@ -1,10 +1,12 @@
 package com.sunky.gallery.controller;
 
+import com.sunky.gallery.dto.PageRequestDTO;
 import com.sunky.gallery.dto.PaintingDTO;
 import com.sunky.gallery.service.PaintingService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -32,5 +34,11 @@ public class PaintingController {
         redirectAttributes.addFlashAttribute("msg", pno);
 
         return "redirect:/painting/list";
+    }
+
+    @GetMapping("/list")
+    public void list(PageRequestDTO pageRequestDTO, Model model){
+        log.info("pageRequestDTO: " + pageRequestDTO);
+        model.addAttribute("result", paintingService.getList(pageRequestDTO));
     }
 }
