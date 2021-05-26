@@ -23,8 +23,8 @@ public class ReviewRepositoryTests {
 
             Long pno = (long)(Math.random()*100) + 1;
 
-            Long mid = (long)(Math.random()*100) + 1;
-            Member member = Member.builder().mid(mid).build();
+            Long id = (long)(Math.random()*100) + 1;
+            Member member = Member.builder().id(id).build();
 
             Review movieReview = Review.builder()
                     .member(member)

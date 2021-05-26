@@ -17,25 +17,25 @@ public class MemberRepositoryTests {
     @Autowired
     private ReviewRepository reviewRepository;
 
-    @Test
-    public void 회원_등록(){
-
-        IntStream.rangeClosed(1,100).forEach(i -> {
-            Member member = Member.builder().email("r"+i+"@naver.com").password("1111").nickname("reviewer"+i).build();
-            memberRepository.save(member);
-        });
-    }
+//    @Test
+//    public void 회원_등록(){
+//
+//        IntStream.rangeClosed(1,100).forEach(i -> {
+//            Member member = Member.builder().email("r"+i+"@naver.com").password("1111").nickname("reviewer"+i).build();
+//            memberRepository.save(member);
+//        });
+//    }
 
     @Commit
     @Transactional
     @Test
     public void 회원_삭제(){
 
-        Long mid = 2L;
+        Long id = 2L;
 
-        Member member = Member.builder().mid(mid).build();
+        Member member = Member.builder().setId(id).build();
 
         reviewRepository.deleteByMember(member);
-        memberRepository.deleteById(mid);
+        memberRepository.deleteById(id);
     }
 }
