@@ -1,9 +1,11 @@
 package com.sunky.gallery.config.auth;
 
+import com.sunky.gallery.config.auth.dto.OAuthAttributes;
+import com.sunky.gallery.config.auth.dto.SessionUser;
 import com.sunky.gallery.entity.Member;
 import com.sunky.gallery.repository.MemberRepository;
-import javassist.Loader;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
@@ -30,13 +32,13 @@ public class CustomOAuth2UserService implements OAuth2UserService<OAuth2UserRequ
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
         String userNameAttributeName = userRequest.getClientRegistration().getProviderDetails().getUserInfoEndpoint().getUserNameAttributeName();
 
-        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName,oAuth2User.getAttribute());
+        OAuthAttributes attributes = OAuthAttributes.of(registrationId, userNameAttributeName,oAuth2User.getAttributes());
 
         Member member = saveOrUpdate(attributes);
 
-        httpSession.setAttribute("user", new SessionUser(user));
+        httpSession.setAttribute("user", new SessionUser(member));
 
-        return new DefaultOAuth2User(Collections.singleton(new Loader.Simple(member.getRoleKey())),attributes.getAttributes(),
+        return new DefaultOAuth2User(Collections.singleton(new SimpleGrantedAuthority(member.getRoleKey())),attributes.getAttributes(),
                 attributes.getNameAttributeKey());
     }
 
