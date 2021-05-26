@@ -1,7 +1,6 @@
 package com.sunky.gallery.entity;
 
 import lombok.*;
-import org.springframework.context.annotation.Role;
 
 import javax.persistence.*;
 

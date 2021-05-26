@@ -33,7 +33,7 @@ public class MemberRepositoryTests {
 
         Long id = 2L;
 
-        Member member = Member.builder().setId(id).build();
+        Member member = Member.builder()..build();
 
         reviewRepository.deleteByMember(member);
         memberRepository.deleteById(id);
