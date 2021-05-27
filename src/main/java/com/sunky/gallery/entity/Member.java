@@ -5,12 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 
 @Entity
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 @Getter
 @ToString
+@Builder
 @Table(name = "m_member")
+@NoArgsConstructor
+@AllArgsConstructor
 public class Member extends BaseEntity{
 
     @Id
@@ -32,7 +32,6 @@ public class Member extends BaseEntity{
 
     @Builder
     public Member(String name, String email, String picture, Role role){
-
         this.name = name;
         this.email = email;
         this.picture = picture;
@@ -49,4 +48,5 @@ public class Member extends BaseEntity{
     public String getRoleKey(){
         return this.role.getKey();
     }
+
 }
