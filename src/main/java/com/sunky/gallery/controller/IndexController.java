@@ -1,5 +1,6 @@
 package com.sunky.gallery.controller;
 
+import com.sunky.gallery.config.auth.LoginUser;
 import com.sunky.gallery.config.auth.dto.SessionUser;
 import com.sunky.gallery.dto.PageRequestDTO;
 import com.sunky.gallery.service.PaintingService;
@@ -18,9 +19,8 @@ public class IndexController {
     private HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, PageRequestDTO pageRequestDTO){
+    public String index(Model model, PageRequestDTO pageRequestDTO, @LoginUser SessionUser user){
         model.addAttribute("result", paintingService.getList(pageRequestDTO));
-        SessionUser user = (SessionUser) httpSession.getAttribute("user");
 
         if(user != null){
             model.addAttribute("userName", user.getName());
