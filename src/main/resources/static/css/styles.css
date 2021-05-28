@@ -60,6 +60,12 @@ body {
   -webkit-text-size-adjust: 100%;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
+/* 헤더 로고 */
+#nav-logo {
+    width: 16%;
+    height: auto;
+
+}
 
 hr {
   margin: 1rem 0;
@@ -593,7 +599,7 @@ progress {
   font-size: 0.875em;
   color: #6c757d;
 }
-
+/* width: 90퍼 수정 (원래 100%)*/
 .container,
 .container-fluid,
 .container-xxl,
@@ -601,7 +607,7 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
-  width: 100%;
+  width: 90%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
@@ -3941,8 +3947,6 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
 }
 .navbar > .container,
 .navbar > .container-fluid,
@@ -7412,9 +7416,9 @@ textarea.form-control-lg {
   background-color: #dc3545 !important;
 }
 
-.bg-light {
+/*.bg-light {
   background-color: #f8f9fa !important;
-}
+}*/
 
 .bg-dark {
   background-color: #212529 !important;
