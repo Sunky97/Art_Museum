@@ -26,6 +26,11 @@
   .uploadResult ul li img {
         width:100px;
   }
+
+  .card-title a {
+    text-decoration : none;
+    color: #FFD119;
+  }
 </style>
 
   <h1 class="mt-4">Read page</h1>
@@ -83,7 +88,7 @@
         <div class="modal-body">
           <div class="form-group">
             <label>Review ID</label>
-            <input type="text" class="form-control" name="mid">
+            <input type="text" class="form-control" name="id">
           </div>
 
           <div class="form-group">
@@ -149,7 +154,7 @@
       //$(".reviewModal").modal("show");
 
       let reviewModal = $(".reviewModal");
-      let inputMid = $('input[name="mid"]');
+      let inputMid = $('input[name="id"]');
       let inputText = $('input[name="text"]');
 
       $(".addReviewBtn").click(function(){
@@ -164,7 +169,7 @@
       });
 
       $('.reviewSaveBtn').click(function(){
-        let data = {pno:pno, grade:grade, text:inputText.val(), mid:inputMid.val()};
+        let data = {pno:pno, grade:grade, text:inputText.val(), id:inputMid.val()};
         console.log(data);
 
         $.ajax({
@@ -195,9 +200,9 @@
           $.each(arr, function(idx, review) {
             console.log(review);
 
-            str += '<div class="card-body" data-reviewnum='+review.reviewnum+' data-mid='+review.mid+'>';
-            str += '<h5 class="card-title">'+review.text+' <span>'+review.grade+'</span></h5>';
-            str += '<h6 class="card-subtitle mb-2 text-muted">'+review.nickname+'</h6>';
+            str += '<div class="card-body" data-reviewnum='+review.reviewnum+' data-id='+review.id+'>';
+            str += '<h5 class="card-title">'+review.name+' <span><a href="#" class="fa fa-star"></a>'+review.grade+'</span></h5>';
+            str += '<h6 class="card-subtitle mb-2 text-muted">'+review.text+'</h6>';
             str += '<p class="card-text">'+formatTime(review.regDate)+'</p>';
             str += '</div>';
           });
@@ -217,17 +222,18 @@
 
         reviewnum = targetReview.data("reviewnum");
         console.log("reviewnum: "+reviewnum);
-        inputMid.val(targetReview.data("mid"));
-        inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
+        inputMid.val(targetReview.data("id"));
+        //inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
+        inputText.val(targetReview.find('.card-subtitle').text());
 
-        let grade = targetReview.find('.card-title span').html();
+        let grade = targetReview.find('.card-title span').text();
         $(".starrr a:nth-child("+grade+")").trigger('click');
 
         $('.reviewModal').modal('show');
       });
 
       $(".modifyBtn").on("click", function(){
-        let data = {reviewnum: reivewnum, pno:pno, grade:grade, text:inputText.val(), mid: inputMid.val()};
+        let data = {reviewnum: reivewnum, pno:pno, grade:grade, text:inputText.val(), id: inputMid.val()};
         console.log(data);
 
         $.ajax({

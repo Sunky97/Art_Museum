@@ -26,7 +26,7 @@ public class ReviewServiceImpl implements ReviewService{
 
         List<Review> result = reviewRepository.findByPainting(painting);
 
-        return result.stream().map(paintingReview -> entityTODto(paintingReview)).collect(Collectors.toList());
+        return result.stream().map(paintingReview -> entityToDto(paintingReview)).collect(Collectors.toList());
     }
 
     @Override

@@ -22,7 +22,7 @@ public interface ReviewService {
         Review pReview = Review.builder()
                 .reviewnum(pReviewDTO.getReviewnum())
                 .painting(Painting.builder().pno(pReviewDTO.getPno()).build())
-                .member(Member.builder().name(pReviewDTO.getName()).build())
+                .member(Member.builder().id(pReviewDTO.getId()).build())
                 .grade(pReviewDTO.getGrade())
                 .text(pReviewDTO.getText())
                 .build();
@@ -30,7 +30,7 @@ public interface ReviewService {
         return pReview;
     }
 
-    default ReviewDTO entityTODto(Review pReview){
+    default ReviewDTO entityToDto(Review pReview){
 
         ReviewDTO pReviewDTO = ReviewDTO.builder()
                 .reviewnum(pReview.getReviewnum())
