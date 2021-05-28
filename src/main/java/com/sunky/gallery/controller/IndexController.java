@@ -24,8 +24,6 @@ public class IndexController {
 
         if(user != null){
             model.addAttribute("userName", user.getName());
-        } else {
-            model.addAttribute("userName", null);
         }
 
         return "/painting/list";

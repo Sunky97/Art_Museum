@@ -1,5 +1,7 @@
 package com.sunky.gallery.controller;
 
+import com.sunky.gallery.config.auth.LoginUser;
+import com.sunky.gallery.config.auth.dto.SessionUser;
 import com.sunky.gallery.dto.PageRequestDTO;
 import com.sunky.gallery.dto.PaintingDTO;
 import com.sunky.gallery.service.PaintingService;
@@ -45,6 +47,7 @@ public class PaintingController {
 
     @GetMapping({"/read", "/modify"})
     public void read(long pno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model){
+
         log.info("pno: " + pno);
         model.addAttribute("dto", paintingService.getPainting(pno));
     }

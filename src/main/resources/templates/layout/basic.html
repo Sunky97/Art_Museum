@@ -44,11 +44,11 @@
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <!-- 로그인 -->
-          <span th:if="${userName == null}">
+          <span th:if="${session.user == undefined}">
             <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
           </span>
-          <span th:if="${userName != null}">
-            [[${userName}]] 님 환영합니다.
+          <span th:unless="${session.user == undefined}">
+            [[${session.user.name}]] 님 환영합니다.
             <a href="/logout" class="btn btn-info active" role="button">Logout</a>
           </span>
 
