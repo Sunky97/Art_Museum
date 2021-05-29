@@ -51,7 +51,7 @@
 
 body {
   margin: 0;
-  font-family: var(--bs-font-sans-serif);
+  font-family: 'nanumsquare';
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
@@ -10877,4 +10877,13 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
+
+#posts-container a{
+    text-decoration: none;
+    color : black;
+}
+
+#posts-container li{
+    list-style:none;
 }

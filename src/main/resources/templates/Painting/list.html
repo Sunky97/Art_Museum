@@ -12,23 +12,23 @@
             </span>
     </h1>
 
-    <table class="table table-striped">
-        <tbody>
-        <tr th:each="dto : ${result.dtoList}">
-            <th scopr="row">
+<!--    게시물 리스트-->
+    <div id="posts-container">
+        <ul th:each="dto:${result.dtoList}">
+            <li>
                 <a th:href="@{/painting/read(pno = ${dto.pno}, page=${result.page})}">
-                    [[${dto.pno}]]
+                    <div>
+                        <img th:src="|/display?fileName=${dto.imageDTOList[0].getImageURL()}|">
+                    </div>
+
+                    <div>
+                        [[${dto.title}]] <br>
+                        평균 ★ [[${dto.avg}]]
+                    </div>
                 </a>
-            </th>
-            <td><img th:if="${dto.imageDTOList.size() > 0 && dto.imageDTOList[0].path != null}"
-                     th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|">
-            [[${dto.title}]]</td>
-            <td>[[${dto.avg}]]</td>
-            <td>[[${#temporals.format(dto.regDate, 'yyyy/MM/dd')}]]</td>
-        </tr>
-        </tbody>
-    </table>
-<!--</th:block>-->
+            </li>
+        </ul>
+    </div>
 
 <ul class="pagination h-100 justify-content-center align-items-center">
 
