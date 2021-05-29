@@ -10886,4 +10886,24 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 
 #posts-container li{
     list-style:none;
+    display:inline-block;
+    box-sizing:border-box;
+    width:33.3%;
+}
+.post-header{
+    width:100%
+}
+
+
+.post-image-wrap {
+    overflow:hidden;
+}
+
+.post-image-wrap img {
+    width:100%;
+    object-fit: cover;
+}
+
+.post-body {
+    width:100%
 }
