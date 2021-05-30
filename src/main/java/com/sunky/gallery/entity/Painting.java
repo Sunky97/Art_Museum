@@ -31,4 +31,8 @@ public class Painting extends BaseEntity{
 
     private String etc;
 
+    private Long viewCnt;
+
+    private Long likeCnt;
+
 }
