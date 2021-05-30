@@ -17,6 +17,11 @@ public class PaintingDTO {
 
     private Long pno;
     private String title;
+    private String author;
+    private int year;
+    private String material;
+    private String size;
+    private String etc;
 
     @Builder.Default
     private List<PaintingImageDTO> imageDTOList = new ArrayList<>();
