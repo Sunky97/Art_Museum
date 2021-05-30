@@ -48,6 +48,8 @@ public class UploadController {
                 return new ResponseEntity<>(HttpStatus.FORBIDDEN);
             }
 
+
+
             String originalName = uploadFile.getOriginalFilename();
             String fileName = originalName.substring(originalName.lastIndexOf("\\") + 1);
 
@@ -71,9 +73,20 @@ public class UploadController {
                 //섬네일 파일 이름은 중간에 S_로 시작
                 File thumbnailFile = new File(thumbnailSaveName);
 
+                BufferedImage image = ImageIO.read(uploadFile.getInputStream());
+
+                double getWidth = image.getWidth();
+                double getHeight = image.getHeight();
+
+                // 비율
+                double resizeRatio = getWidth / getHeight;
+
+                // 지정한 높이, 높이와 비율로 구한 너비
+                int mediumHeight = 300;
+                int mediumWidth = (int) (resizeRatio * mediumHeight);
 
                 //섬네일 생성
-                Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,100,100);
+                Thumbnailator.createThumbnail(savePath.toFile(), thumbnailFile,mediumWidth,mediumHeight);
 
                 resultDTOList.add(new UploadResultDTO(fileName,uuid,folderPath));
 
