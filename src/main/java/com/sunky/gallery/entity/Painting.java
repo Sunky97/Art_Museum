@@ -19,5 +19,16 @@ public class Painting extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long pno;
 
+    private String author;
+
     private String title;
+
+    private int year;
+
+    private String material;
+
+    private String size;
+
+    private String etc;
+
 }
