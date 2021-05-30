@@ -49,6 +49,11 @@ public interface PaintingService {
         Painting painting = Painting.builder()
                 .pno(paintingDTO.getPno())
                 .title(paintingDTO.getTitle())
+                .author(paintingDTO.getAuthor())
+                .year(Integer.parseInt(paintingDTO.getYear()))
+                .material(paintingDTO.getMaterial())
+                .etc(paintingDTO.getEtc())
+                .size(paintingDTO.getSize())
                 .build();
 
         entityMap.put("painting", painting);
