@@ -5,6 +5,7 @@ import com.sunky.gallery.entity.PaintingImage;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
             " WHERE p.pno = :pno GROUP BY pi")
     List<Object[]> getPaintingWithAll(Long pno); // 특정 그림 조회
 
-    @Query("UPDATE Painting SET viewCnt = viewCnt+1 WHERE Painting.pno = :pno ")
-    void updateViewCnt(Long pno);
+    @Modifying
+    @Query("UPDATE Painting p SET p.viewCnt = p.viewCnt+1 WHERE p.pno = :pno ")
+    int updateViewCnt(Long pno);
 }

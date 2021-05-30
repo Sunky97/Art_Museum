@@ -22,8 +22,8 @@ public class PaintingDTO {
     private String material;
     private String size;
     private String etc;
-    private Long viewCnt;
-    private Long likeCnt;
+    private int viewCnt;
+    private int likeCnt;
 
     @Builder.Default
     private List<PaintingImageDTO> imageDTOList = new ArrayList<>();

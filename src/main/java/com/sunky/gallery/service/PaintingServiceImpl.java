@@ -69,6 +69,7 @@ public class PaintingServiceImpl implements PaintingService{
         //조회수 증가
         paintingRepository.updateViewCnt(pno);
 
+        //DB 조회
         List<Object[]> result = paintingRepository.getPaintingWithAll(pno);
 
         Painting painting = (Painting) result.get(0)[0];

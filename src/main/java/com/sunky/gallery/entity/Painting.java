@@ -1,11 +1,9 @@
 package com.sunky.gallery.entity;
 
 import lombok.*;
+import org.hibernate.annotations.ColumnDefault;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Builder
@@ -31,8 +29,12 @@ public class Painting extends BaseEntity{
 
     private String etc;
 
-    private Long viewCnt;
+    @Column(name = "viewCnt")
+    @ColumnDefault("0")
+    private int viewCnt;
 
-    private Long likeCnt;
+    @Column(name = "likeCnt")
+    @ColumnDefault("0")
+    private int likeCnt;
 
 }
