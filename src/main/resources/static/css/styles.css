@@ -10888,7 +10888,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     list-style:none;
     display:inline-block;
     box-sizing:border-box;
-    width:33.3%;
+    width:20%;
 }
 .post-header{
     width:100%
