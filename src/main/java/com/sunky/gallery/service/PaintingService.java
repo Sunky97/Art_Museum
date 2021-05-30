@@ -24,6 +24,13 @@ public interface PaintingService {
         PaintingDTO paintingDTO = PaintingDTO.builder()
                 .pno(painting.getPno())
                 .title(painting.getTitle())
+                .author(painting.getAuthor())
+                .year(""+painting.getYear())
+                .material(painting.getMaterial())
+                .size(painting.getSize())
+                .etc(painting.getEtc())
+                .viewCnt(painting.getViewCnt())
+                .likeCnt(painting.getLikeCnt())
                 .regDate(painting.getRegDate())
                 .modDate(painting.getModDate())
                 .build();
