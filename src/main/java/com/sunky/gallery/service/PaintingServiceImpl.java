@@ -62,8 +62,12 @@ public class PaintingServiceImpl implements PaintingService{
         return new PageResultDTO<>(result,fn);
     }
 
+    @Transactional
     @Override
     public PaintingDTO getPainting(Long pno){
+
+        //조회수 증가
+        paintingRepository.updateViewCnt(pno);
 
         List<Object[]> result = paintingRepository.getPaintingWithAll(pno);
 

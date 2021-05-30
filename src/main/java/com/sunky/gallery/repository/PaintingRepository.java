@@ -21,4 +21,7 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
             " LEFT OUTER JOIN Review r on r.painting = p" +
             " WHERE p.pno = :pno GROUP BY pi")
     List<Object[]> getPaintingWithAll(Long pno); // 특정 그림 조회
+
+    @Query("UPDATE Painting SET viewCnt = viewCnt+1 WHERE Painting.pno = :pno ")
+    void updateViewCnt(Long pno);
 }
