@@ -65,6 +65,8 @@ body {
     width: 16%;
     height: auto;
 
+    cursor: pointer;
+
 }
 
 hr {
@@ -5326,6 +5328,8 @@ textarea.form-control-lg {
 .modal-title {
   margin-bottom: 0;
   line-height: 1.5;
+  position: absolute;
+  left:45%;
 }
 
 .modal-body {
@@ -5351,7 +5355,7 @@ textarea.form-control-lg {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 350px;
     margin: 1.75rem auto;
   }
 
@@ -10907,3 +10911,44 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 .post-body {
     width:100%
 }
+
+/*구글 로그인 버튼*/
+ #customBtn {
+      margin-left:auto;
+      margin-right:auto;
+      background: white;
+      color: #444;
+      width: 190px;
+      border-radius: 5px;
+      border: thin solid #888;
+      box-shadow: 1px 1px 1px grey;
+      white-space: nowrap;
+    }
+    #customBtn a {
+      color: black;
+      text-decoration: none;
+    }
+    #customBtn:hover {
+      cursor: pointer;
+    }
+    span.label {
+      font-family: serif;
+      font-weight: normal;
+    }
+    span.icon {
+      background: url('https://developers.google.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 42px;
+    }
+    span.buttonText {
+      display: inline-block;
+      vertical-align: middle;
+      padding-left: 42px;
+      padding-right: 42px;
+      font-size: 14px;
+      font-weight: bold;
+      /* Use the Roboto font that is loaded in the <head> */
+      font-family: 'Roboto', sans-serif;
+    }
