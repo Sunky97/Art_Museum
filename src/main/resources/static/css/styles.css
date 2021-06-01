@@ -5329,7 +5329,7 @@ textarea.form-control-lg {
   margin-bottom: 0;
   line-height: 1.5;
   position: absolute;
-  left:45%;
+  left:43%;
 }
 
 .modal-body {
@@ -5341,7 +5341,7 @@ textarea.form-control-lg {
 .modal-footer {
   display: flex;
   flex-wrap: wrap;
-  flex-shrink: 0;
+  flex- shrink: 0;
   align-items: center;
   justify-content: flex-end;
   padding: 0.75rem;
@@ -10888,11 +10888,20 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     color : black;
 }
 
-#posts-container li{
+#posts-wrapper {
+     display: flex;
+     flex-wrap: wrap;
+     justify-content: space-around;
+     align-content: space-around;
+     align-items: baseline;
+}
+
+.post-box{
     list-style:none;
-    display:inline-block;
     box-sizing:border-box;
-    width:20%;
+    width:30%;
+    padding: 0 5px;
+    margin-top: 1.5rem;
 }
 .post-header{
     width:100%
@@ -10901,6 +10910,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 
 .post-image-wrap {
     overflow:hidden;
+    border-radius: 5px;
 }
 
 .post-image-wrap img {
@@ -10909,8 +10919,19 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 
 .post-body {
-    width:100%
+    width:100%;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+    padding-top: 5px;
 }
+    .post-body b {
+        font-size: 16px;
+    }
+    .post-body span {
+        font-size: 14px;
+        color: gray;
+    }
 
 /*구글 로그인 버튼*/
  #customBtn {

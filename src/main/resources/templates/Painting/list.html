@@ -14,8 +14,8 @@
 
 <!--    게시물 리스트-->
     <div id="posts-container">
-        <ul>
-            <li th:each="dto:${result.dtoList}">
+        <div id="posts-wrapper">
+            <div th:each="dto:${result.dtoList}" class="post-box">
                 <a th:href="@{/painting/read(pno = ${dto.pno}, page=${result.page})}">
                     <div class="post-header">
                         <div class="post-image-wrap">
@@ -24,13 +24,13 @@
                     </div>
 
                     <div class="post-body">
-                        [[${dto.title}]] <br>
-                        평균 ★ [[${dto.avg}]] <br>
+                        <b>[[${dto.title}]]</b> <br>
+                        <span>평균 ★ [[${dto.avg}]]</span>
                         <!--[[${dto.viewCnt}]]-->
                     </div>
                 </a>
-            </li>
-        </ul>
+            </div>
+        </div>
     </div>
 
 <ul class="pagination h-100 justify-content-center align-items-center">
