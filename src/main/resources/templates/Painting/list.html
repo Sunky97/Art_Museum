@@ -56,4 +56,40 @@
 
 </th:block>
     </th:block>
+
+<script>
+    $(function(){
+        if($(window).scrollTop() + $(window).height() == $(document).height()) {
+            loadMoreOrderList();
+        }
+
+        $(window).scroll(function(){
+            if($(window).scrollTop() + $(window).height() == $(document).height()) {
+                loadMoreOrderList();
+            }
+        });
+    });
+
+    const size = 20;
+    let total = 0;
+    async function loadMoreOrderList(){
+        let nextPage = parseInt(total/size);
+        let data = '';
+
+        await $.get(`/api/my/orders?page=${nextPage}&size=${size}`,function(result) {
+            data = result;
+        })
+
+        $("tbody").append(toTrList(data.myorderList));
+        total += data.total;
+
+        if(data.total < size) {
+            $(window).unbind();
+        }
+    }
+
+    function toTrList(orderList){
+
+    }
+</script>
 </html>
