@@ -56,40 +56,46 @@
 
 </th:block>
     </th:block>
-
+<script
+        src="https://code.jquery.com/jquery-3.6.0.js"
+        integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+        crossorigin="anonymous"></script>
 <script>
-    $(function(){
-        if($(window).scrollTop() + $(window).height() == $(document).height()) {
-            loadMoreOrderList();
-        }
 
-        $(window).scroll(function(){
-            if($(window).scrollTop() + $(window).height() == $(document).height()) {
-                loadMoreOrderList();
-            }
-        });
+    var page = 1;
+
+    let lastScrollTop = 0;
+
+    $(window).scroll(function() {
+	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
+		    page++;
+		    loadMoreList();
+        }
     });
 
-    const size = 20;
-    let total = 0;
-    async function loadMoreOrderList(){
-        let nextPage = parseInt(total/size);
-        let data = '';
 
-        await $.get(`/api/my/orders?page=${nextPage}&size=${size}`,function(result) {
-            data = result;
-        })
 
-        $("tbody").append(toTrList(data.myorderList));
-        total += data.total;
+    function loadMoreList(){
 
-        if(data.total < size) {
-            $(window).unbind();
-        }
+        alert(page+'+ 전송');
+
+        $.ajax({
+            type : 'post',
+            url : '/api/getPosts',
+            contentType: "application/json; charset=utf-8",
+            dataType : 'json',
+            data : JSON.stringify({
+                'page' : page
+            }),
+            success : function(data){
+                console.log(data);
+            },
+            error : function(error){
+                console.log(error);
+            }
+        });
     }
 
-    function toTrList(orderList){
 
-    }
 </script>
 </html>
