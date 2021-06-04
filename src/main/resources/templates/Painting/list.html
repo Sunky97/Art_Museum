@@ -33,7 +33,7 @@
         </div>
     </div>
 
-<ul class="pagination h-100 justify-content-center align-items-center">
+<!--<ul class="pagination h-100 justify-content-center align-items-center">
 
     <li class="page-item" th:if="${result.prev}">
         <a class="page-link" th:href="@{/painting/list(page=${result.start-1})}" tabindex="-1">
@@ -52,7 +52,7 @@
             Next
         </a>
     </li>
-</ul>
+</ul>-->
 
 </th:block>
     </th:block>
@@ -77,8 +77,6 @@
 
     function loadMoreList(){
 
-        alert(page+'+ 전송');
-
         $.ajax({
             type : 'post',
             url : '/api/getPosts',
@@ -98,11 +96,16 @@
     }
 
     function appendPost(post){
+
+        if(post.dtoList.length < 24) {
+
+        }
+
         for(let i=0; i<post.dtoList.length; i++){
             //console.log(post.dtoList[i].pno);
 
             let str = `
-            <div class="post-box"><a th:href="/painting/read?pno=${post.dtoList[i].pno}>
+            <div class="post-box"><a href="/painting/read?pno=${post.dtoList[i].pno}">
                     <div class="post-header">
                         <div class="post-image-wrap">
                             <img src="/display?fileName=${post.dtoList[i].imageDTOList[0].thumbnailURL}" style="object-fit: cover;">
