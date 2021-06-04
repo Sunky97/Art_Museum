@@ -89,11 +89,34 @@
             }),
             success : function(data){
                 console.log(data);
+                appendPost(data);
             },
             error : function(error){
                 console.log(error);
             }
         });
+    }
+
+    function appendPost(post){
+        for(let i=0; i<post.dtoList.length; i++){
+            //console.log(post.dtoList[i].pno);
+
+            let str = `
+            <div class="post-box"><a th:href="/painting/read?pno=${post.dtoList[i].pno}>
+                    <div class="post-header">
+                        <div class="post-image-wrap">
+                            <img src="/display?fileName=${post.dtoList[i].imageDTOList[0].thumbnailURL}" style="object-fit: cover;">
+                        </div>
+                    </div>
+                    <div class="post-body">
+                        <b>${post.dtoList[i].title}</b> <br>
+                        <span>평균 ★ ${post.dtoList[i].avg}</span>
+                    </div>
+                </a></div>`;
+
+            $('#posts-wrapper').append(str);
+
+        }
     }
 
 
