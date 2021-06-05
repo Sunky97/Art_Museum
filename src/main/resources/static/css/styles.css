@@ -610,8 +610,8 @@ progress {
 .container-md,
 .container-sm {
   width: 100%;
-  padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);
+  /*padding-right: var(--bs-gutter-x, 0.75rem);
+  padding-left: var(--bs-gutter-x, 0.75rem);*/
   margin-right: auto;
   margin-left: auto;
 }
@@ -3957,6 +3957,7 @@ textarea.form-control-lg {
   padding-left: 2rem;
   padding-right: 2rem;
 
+  z-index: 255;
   transition: all 0.5s;
 }
 
@@ -10997,11 +10998,17 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
 }
 
 .content-header {
-    height:350px;
+    height:400px;
     overflow: hidden;
 }
 .content-header img {
     object-fit: cover;
     width:100%;
     height:100%;
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(10px);
+    transform: scale(1.1);
 }
