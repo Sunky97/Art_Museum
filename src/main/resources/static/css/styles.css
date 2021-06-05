@@ -62,7 +62,7 @@ body {
 }
 /* 헤더 로고 */
 #nav-logo {
-    width: 16%;
+    width: 14%;
     height: auto;
 
     cursor: pointer;
@@ -609,13 +609,15 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
-  width: 100%;/*
+  width: 100%;
   padding-right: var(--bs-gutter-x, 0.75rem);
-  padding-left: var(--bs-gutter-x, 0.75rem);*/
-  padding-right: 15%;
-  padding-left: 15%;
+  padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
   margin-left: auto;
+}
+
+.main-container {
+
 }
 
 @media (min-width: 576px) {
@@ -3946,12 +3948,18 @@ textarea.form-control-lg {
 }
 
 .navbar {
-  position: relative;
+  position: fixed;
+  top: 0;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
+  padding-left: 2rem;
+  padding-right: 2rem;
+
+  transition: all 0.5s;
 }
+
 .navbar > .container,
 .navbar > .container-fluid,
 .navbar > .container-sm,
@@ -10884,6 +10892,12 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
+
+#posts-container {
+  margin-top: 80px;
+  padding-right: 15%;
+  padding-left: 15%;
 }
 
 #posts-container a{

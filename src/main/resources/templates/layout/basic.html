@@ -98,7 +98,20 @@
     </div>
   </div>
 </div>
-
+<script>
+  $(document).ready(function(){
+    $(window).scroll(function(){
+      var scroll = $(window).scrollTop();
+      if (scroll > 50) {
+        $(".navbar").css("background","white");
+      }
+      else{
+        $(".navbar").css("background","");
+      }
+    })
+  })
+  </script>
 </body>
 </th:block>
+
 </html>
