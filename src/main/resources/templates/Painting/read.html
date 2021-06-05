@@ -33,12 +33,22 @@
   }
 </style>
 
-<!--  <h1 class="mt-4">Read page</h1>-->
+  <div>
+<!-- header -->
+    <div>
+      <div class="content-header"><img th:src="|/display?fileName=${dto.imageDTOList[0].getImageURL()}|"></div>
+      <div class="content-body"></div>
+    </div>
 
-<!--  <div class="form-group">-->
-<!--    <label>pno</label>-->
+<!--  info  -->
+    <div>
+
+    </div>
+  </div>
+
+
+
     <input type="hidden" class="form-control" name="pno" th:value="${dto.pno}" readonly>
-<!--  </div>-->
 
   <div class="form-group">
     <label>제목</label>
