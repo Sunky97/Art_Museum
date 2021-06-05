@@ -4,13 +4,13 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content} )}">
 
 <th:block th:fragment="content">
-    <h1 class="mt-4">
-        <span>
-                <a th:href="@{/painting/register}">
-                    <button type="button" class="btn btn-outline-primary">Register</button>
-                </a>
-            </span>
-    </h1>
+<!--    <h1 class="mt-4">-->
+<!--        <span>-->
+<!--                <a th:href="@{/painting/register}">-->
+<!--                    <button type="button" class="btn btn-outline-primary">Register</button>-->
+<!--                </a>-->
+<!--            </span>-->
+<!--    </h1>-->
 
 <!--    게시물 리스트-->
     <div id="posts-container">
@@ -33,30 +33,12 @@
         </div>
     </div>
 
-<!--<ul class="pagination h-100 justify-content-center align-items-center">
-
-    <li class="page-item" th:if="${result.prev}">
-        <a class="page-link" th:href="@{/painting/list(page=${result.start-1})}" tabindex="-1">
-            Prev
-        </a>
-    </li>
-
-    <li th:class="'page-item'+${result.page == page?'active':''}" th:each="page:${result.pageList}">
-        <a class="page-link" th:href="@{/painting/list(page=${page})}">
-            [[${page}]]
-        </a>
-    </li>
-
-    <li class="page-item" th:if="${result.next}">
-        <a class="page-link" th:href="@{/painting/list(page=${result.end+1})}">
-            Next
-        </a>
-    </li>
-</ul>-->
-
+    <hr>
+    <div id="load-Button-Box">
+    <button type="button" class="btn btn-outline-primary" id="loadPage">더 보기</button>
+    </div>
 </th:block>
     </th:block>
-
 <script
         src="https://code.jquery.com/jquery-3.6.0.js"
         integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
@@ -65,16 +47,10 @@
 
     var page = 1;
 
-    let lastScrollTop = 0;
-
-    $(window).scroll(function() {
-	    if ($(window).scrollTop() == $(document).height() - $(window).height()) {
-		    page++;
-		    loadMoreList();
-        }
+    $("#loadPage").on("click",function(){
+        page++;
+        loadMoreList();
     });
-
-
 
     function loadMoreList(){
 
@@ -98,15 +74,19 @@
 
     function appendPost(post){
 
-        if(post.dtoList.length < 24) {
+        if(post.dtoList.length < 18) {
+            $("#loadPage").remove();
 
+            let str = `<span style="color:gray;">더 이상 불러올 작품이 없습니다.</span>`;
+
+            $("#load-Button-Box").append(str);
         }
 
         for(let i=0; i<post.dtoList.length; i++){
             //console.log(post.dtoList[i].pno);
 
-            let str = `
-            <div class="post-box"><a href="/painting/read?pno=${post.dtoList[i].pno}">
+            let str = `<div class="post-box">
+                <a href="/painting/read?pno=${post.dtoList[i].pno}">
                     <div class="post-header">
                         <div class="post-image-wrap">
                             <img src="/display?fileName=${post.dtoList[i].imageDTOList[0].thumbnailURL}" style="object-fit: cover;">
@@ -116,13 +96,11 @@
                         <b>${post.dtoList[i].title}</b> <br>
                         <span>평균 ★ ${post.dtoList[i].avg}</span>
                     </div>
-                </a></div>`;
+                </a>
+            </div>`;
 
             $('#posts-wrapper').append(str);
-
         }
     }
-
-
 </script>
 </html>

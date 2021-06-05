@@ -19,7 +19,7 @@ public class PageRequestDTO {
 
     public PageRequestDTO(){
         this.page = 1;
-        this.size = 24;
+        this.size = 18;
     }
 
     public Pageable getPageable(Sort sort){

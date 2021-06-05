@@ -609,7 +609,7 @@ progress {
 .container-lg,
 .container-md,
 .container-sm {
-  width: 90%;
+  width: 70%;
   padding-right: var(--bs-gutter-x, 0.75rem);
   padding-left: var(--bs-gutter-x, 0.75rem);
   margin-right: auto;
@@ -10973,3 +10973,8 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
       /* Use the Roboto font that is loaded in the <head> */
       font-family: 'Roboto', sans-serif;
     }
+
+#load-Button-Box {
+    text-align: center;
+    margin: 50px 0 50px 0;
+}
