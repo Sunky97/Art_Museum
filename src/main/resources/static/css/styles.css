@@ -3958,7 +3958,7 @@ textarea.form-control-lg {
   padding-right: 2rem;
 
   z-index: 255;
-  transition: all 0.5s;
+  transition: all 0.3s;
 }
 
 .navbar > .container,
@@ -11001,14 +11001,31 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     height:400px;
     overflow: hidden;
 }
-.content-header img {
+.background-img-blur {
     object-fit: cover;
     width:100%;
-    height:100%;
+    height:80%;
     -webkit-filter: blur(5px);
     -moz-filter: blur(5px);
     -o-filter: blur(5px);
     -ms-filter: blur(5px);
     filter: blur(10px);
     transform: scale(1.1);
+}
+
+.thumbnail-wrap img{
+    display: block;
+    position: absolute;
+    left: 10%;
+    box-sizing: border-box;
+    border: 1px solid rgb(255, 255, 255);
+    border-radius: 3px;
+    margin: 0px auto;
+    background: rgb(248, 248, 248);
+    border-width: 2px;
+    box-shadow: rgb(0 0 0 / 30%) 0px 0px 2px;
+}
+
+.content-body {
+    margin-left: 30%;
 }

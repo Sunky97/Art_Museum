@@ -37,21 +37,26 @@
 <!-- header -->
     <div>
       <div class="content-header">
-        <div></div>
-        <img th:src="|/display?fileName=${dto.imageDTOList[0].getImageURL()}|"></div>
-        <div></div>
-      <div class="content-body"></div>
+        <div class="background-img-blur">
+          <img th:src="|/display?fileName=${dto.imageDTOList[0].getImageURL()}|">
+        </div>
+
+        <div class="thumbnail-wrap">
+          <img th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|">
+        </div>
+      </div>
+
+      <div class="content-body">
+aa
+      </div>
     </div>
 
 <!--  info  -->
     <div>
-<br><br><br><br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+      <br><br><br><br><br><br><br><br><br><br>
     </div>
   </div>
-
-
 
     <input type="hidden" class="form-control" name="pno" th:value="${dto.pno}" readonly>
 
