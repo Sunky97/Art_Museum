@@ -4,7 +4,7 @@
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
 <th:block th:fragment="content">
 
-  <div style="background-color:#f7f7f7;">
+  <div style="background-color:#f7f7f7; padding-bottom: 20px;">
 <!-- header -->
     <div style="background-color:white; border-bottom:1px #e3e3e3 solid;">
       <div class="content-header">
@@ -67,41 +67,41 @@
     </div>
   </div>
 
+    <input type="hidden" id="sessionUser" th:value="${session.user}">
     <input type="hidden" class="form-control" name="pno" th:value="${dto.pno}" readonly>
 
 <!-- 리뷰 모달창 -->
   <div class="reviewModal modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
+    <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Review</h5>
+          <h5 class="modal-title">리뷰 작성</h5>
 
-          <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+          <button type="button" class="btn-close close" data-dismiss="modal" aria-label="Close">
           </button>
         </div>
 
         <div class="modal-body">
           <div class="form-group">
-            <label>Review ID</label>
+            <label>작성자</label>
             <input type="text" class="form-control" name="id">
           </div>
 
           <div class="form-group">
-            <label>Grade<span class="grade"></span></label>
+            <label>평점<span class="grade"></span></label>
             <div class="starrr"></div>
           </div>
 
           <div class="form-group">
-            <label>Review Text</label>
-            <input type="text" class="form-control" name="text" placeholder="awesome!!!!">
+            <label>내용</label>
+            <input type="text" class="form-control" name="text">
           </div>
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary reviewSaveBtn">Save changes</button>
-          <button type="button" class="btn btn-warning modifyBtn">Modify</button>
-          <button type="button" class="btn btn-danger removeBtn">Remove</button>
+          <button type="button" class="btn btn-primary reviewSaveBtn">작성하기</button>
+          <button type="button" class="btn btn-warning modifyBtn">수정</button>
+          <button type="button" class="btn btn-danger removeBtn">삭제</button>
         </div>
       </div>
     </div>
@@ -133,6 +133,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css"/>
   <script>
     $(document).ready(function(e){
+
       let grade = 0;
       let pno = [[${dto.pno}]];
 
@@ -193,11 +194,11 @@
           let str = "";
 
           $.each(arr, function(idx, review) {
-            console.log(review);
+            //console.log(review);
 
             str += '<div class="review-wrap" data-reviewnum='+review.reviewnum+' data-id='+review.id+'>';
             str += '<div class="review-header"><div><b>'+review.name+'</b>   <div class="reviewGrade-wrap"><i class="fa fa-star"></i> '+review.grade+'</div></div>';
-            str += '<div>'+formatTime(review.regDate)+'</div></div> <hr> <h6 class="">'+review.text+'</h6>';
+            str += '<div>'+formatTime(review.regDate)+'</div></div> <hr> <h6 class="review-content">'+review.text+'</h6>';
             str += '</div>';
           });
           $(".reviewList").html(str);
@@ -208,19 +209,24 @@
 
       let reviewnum;
 
-      $(".reviewList").on("click", ".card-body", function(){
+      $(document).on("click",".review-wrap",function(){
+
+      if(loginCheck()){
+        return;
+      }
+
         $(".reviewSaveBtn").hide();
         $(".removeBtn , .modifyBtn").show();
 
         let targetReview = $(this);
 
         reviewnum = targetReview.data("reviewnum");
-        console.log("reviewnum: "+reviewnum);
+        //console.log("reviewnum: "+reviewnum);
         inputMid.val(targetReview.data("id"));
         //inputText.val(targetReview.find('.card-title').clone().children().remove().end().text());
-        inputText.val(targetReview.find('.card-subtitle').text());
+        inputText.val(targetReview.find('.review-content').text());
 
-        let grade = targetReview.find('.card-title span').text();
+        let grade = targetReview.find('.reviewGrade-wrap').text();
         $(".starrr a:nth-child("+grade+")").trigger('click');
 
         $('.reviewModal').modal('show');
@@ -228,7 +234,7 @@
 
       $(".modifyBtn").on("click", function(){
         let data = {reviewnum: reviewnum, pno:pno, grade:grade, text:inputText.val(), id: inputMid.val()};
-        console.log(data);
+        //console.log(data);
 
         $.ajax({
           url:'/reviews/'+pno+"/"+reviewnum,
@@ -237,7 +243,7 @@
           contentType:"application/json; charset=utf-8",
           dataType:"text",
           success:function(result){
-            console.log("result"+result);
+            //console.log("result"+result);
             self.location.reload();
           }
         })
@@ -246,7 +252,7 @@
 
       $(".removeBtn").on("click",function(){
         let data = {reviewnum: reviewnum};
-        console.log(data);
+        //console.log(data);
 
         $.ajax({
           url:'/reviews/'+pno+'/'+reviewnum,
@@ -260,6 +266,19 @@
         })
       reviewModal.modal('hide');
     });
+
+    function loginCheck(){
+      if($("#sessionUser").val()==""){
+        alert("로그인 후 이용해주세요");
+        $("#loginBtn").trigger("click");
+        return true;
+      }
+    }
+
+    $(".btn-close").on("click",function(){
+
+      reviewModal.modal('hide');
+    })
 
   });
   </script>

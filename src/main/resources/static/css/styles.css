@@ -11093,6 +11093,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     border: 1px #e3e3e3 solid;
     border-radius: 6px;
     margin-top: 30px;
+    margin-bottom: 30px;
 }
     .content-info-header {
         display: flex;

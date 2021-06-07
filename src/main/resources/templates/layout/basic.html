@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <meta name="description" content="" />
   <meta name="author" content="" />
-  <title>Simple Sidebar - Start Bootstrap Template</title>
+  <title>ART PEDIA</title>
 <!--  &lt;!&ndash; Favicon&ndash;&gt;-->
 <!--  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />-->
   <!-- Core theme CSS (includes Bootstrap)-->
@@ -81,7 +81,7 @@
           <!-- 로그인 -->
           <ul th:if="${session.user == undefined}" class="navbar-nav ms-auto mt-2 mt-lg-0">
             <li class="nav-item">
-              <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+              <button type="button" id="loginBtn" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
                 로그인
               </button></li>
           </ul>
