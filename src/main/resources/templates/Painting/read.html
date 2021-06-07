@@ -3,98 +3,73 @@
 
 <th:block th:replace="~{/layout/basic :: setContent(~{this::content})}">
 <th:block th:fragment="content">
-  <style>
-  .uploadResult {
-        width:100%;
-        background-color: gray;
-        margin-top:10px;
-  }
-  .uploadResult ul {
-        display: flex;
-        flex-flow: row;
-        justify-content: center;
-        align-items: center;
-        vertical-align: top;
-        overflow: auto;
-  }
-  .uploadResult ul li {
-        list-style: none;
-        padding: 10ox;
-        margin-left: 2em;
-  }
 
-  .uploadResult ul li img {
-        width:100px;
-  }
-
-  .card-title a {
-    text-decoration : none;
-    color: #FFD119;
-  }
-</style>
-
-  <div>
+  <div style="background-color:#f7f7f7;">
 <!-- header -->
-    <div>
+    <div style="background-color:white; border-bottom:1px #e3e3e3 solid;">
       <div class="content-header">
         <div class="background-img-blur">
           <img th:src="|/display?fileName=${dto.imageDTOList[0].getImageURL()}|">
         </div>
 
         <div class="thumbnail-wrap">
-          <img th:src="|/display?fileName=${dto.imageDTOList[0].getThumbnailURL()}|">
+          <img th:src="|/display?fileName=${dto.imageDTOList[0].getImageURL()}|">
         </div>
       </div>
 
       <div class="content-body">
-aa
+        <h1 th:text="${dto.title}"></h1>
+        <span><b>[[${dto.author}]]</b></span> <br>
+        <span>[[${dto.material}]] ・ [[${dto.size}]] ・ [[${dto.year}]]</span><br>
+        <span>[[${dto.etc}]]</span>
+        <hr>
+        <b>평균 ★[[${dto.avg}]] ([[${dto.reviewCnt}]]명)</b>
+        <hr>
+
+        <!--  찜, 리뷰하기  -->
+        <button type="button" class="btn-like likeBtn">
+          <i class="fas fa-heart"></i> &nbsp; 좋아요
+          (<span th:text="${#numbers.formatDecimal(dto.likeCnt, 0, 'COMMA', 0, 'POINT')}"></span>)
+        </button>
+        <button type="button" class="btn btn-outline-primary addReviewBtn">
+          평가하기
+        </button>
       </div>
     </div>
 
 <!--  info  -->
-    <div>
-<br><br><br><br><br><br><br><br><br><br><br><br>
-      <br><br><br><br><br><br><br><br><br><br>
+    <div class="content-info">
+      <div class="content-info-header">
+        <h5><b>기본 정보</b></h5>
+        <a th:href="@{https://www.google.com/search(q=${dto.title})}"><b>더보기</b></a>
+      </div>
+      <br>
+      <div>
+        <p>
+          [[${dto.author}]]<br>
+          [[${dto.material}]] ・ [[${dto.size}]] ・ [[${dto.year}]]</span><br>
+          [[${dto.etc}]]
+        </p>
+      </div>
+
+      <hr>
+
+      <!--  리뷰   -->
+      <div class="content-info-header">
+        <h5><b>코멘트</b></h5>
+        <div></div>
+      </div>
+      <br>
+      <div class="list-group reviewList">
+
+      </div>
+
     </div>
   </div>
 
     <input type="hidden" class="form-control" name="pno" th:value="${dto.pno}" readonly>
 
-  <div class="form-group">
-    <label>제목</label>
-    <input type="text" class="form-control" name="title" th:value="${dto.title}" readonly>
-  </div>
-
-<!--  <div class="form-group">-->
-<!--    <label></label>-->
-<!--    <input type="text" class="form-control" name="reviewCnt" th:value="${dto.reviewCnt}" readonly>-->
-<!--  </div>-->
-
-  <div class="form-group">
-    <label>평균</label>
-    <input type="text" class="form-control" name="avg" th:value="${dto.avg}" readonly>
-  </div>
-
-  <div class="uploadResult">
-    <ul>
-      <li th:each="paintingImage: ${dto.imageDTOList}" th:data-file="${paintingImage.getThumbnailURL()}">
-        <img th:if="${paintingImage.path != null}" th:src="|/display?fileName=${paintingImage.getThumbnailURL()}|">
-      </li>
-    </ul>
-  </div>
-
-  <button type="button" class="btn btn-primary">
-    Review Count <span class="badge badge-light">[[${dto.reviewCnt}]]</span>
-  </button>
-
-  <button type="button" class="btn btn-info addReviewBtn">
-    Review Register
-  </button>
-
-  <div class="list-group reviewList">
-
-  </div>
-
+<!-- 리뷰 모달창 -->
   <div class="reviewModal modal" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
@@ -149,7 +124,7 @@ aa
       </div>
     </div>
   </div>
-
+  <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
   <script src="https://code.jquery.com/jquery-3.6.0.js"
           integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
           crossorigin="anonymous"></script>
@@ -220,10 +195,9 @@ aa
           $.each(arr, function(idx, review) {
             console.log(review);
 
-            str += '<div class="card-body" data-reviewnum='+review.reviewnum+' data-id='+review.id+'>';
-            str += '<h5 class="card-title">'+review.name+' <span><a href="#" class="fa fa-star"></a>'+review.grade+'</span></h5>';
-            str += '<h6 class="card-subtitle mb-2 text-muted">'+review.text+'</h6>';
-            str += '<p class="card-text">'+formatTime(review.regDate)+'</p>';
+            str += '<div class="review-wrap" data-reviewnum='+review.reviewnum+' data-id='+review.id+'>';
+            str += '<div class="review-header"><div><b>'+review.name+'</b>   <div class="reviewGrade-wrap"><i class="fa fa-star"></i> '+review.grade+'</div></div>';
+            str += '<div>'+formatTime(review.regDate)+'</div></div> <hr> <h6 class="">'+review.text+'</h6>';
             str += '</div>';
           });
           $(".reviewList").html(str);
@@ -287,12 +261,6 @@ aa
       reviewModal.modal('hide');
     });
 
-    $(".uploadResult li").click(function(){
-      let file = $(this).data('file');
-      //console.log(file);
-      $('.imageModal .modal-body').html("<img style='width:100%' src='/display?fileName="+file+"&size=1'>");
-      $(".imageModal").modal("show");
-    });
   });
   </script>
 </th:block>
