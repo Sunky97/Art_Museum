@@ -198,7 +198,7 @@
 
             str += '<div class="review-wrap" data-reviewnum='+review.reviewnum+' data-id='+review.id+'>';
             str += '<div class="review-header"><div><b>'+review.name+'</b>   <div class="reviewGrade-wrap"><i class="fa fa-star"></i> '+review.grade+'</div></div>';
-            str += '<div>'+formatTime(review.regDate)+'</div></div> <hr> <h6 class="review-content">'+review.text+'</h6>';
+            str += '<div>'+formatTime(review.regDate)+'</div></div> <hr> <h6 class="review-content">'+review.text+'</h6><button>수정・삭제</>button>';
             str += '</div>';
           });
           $(".reviewList").html(str);
