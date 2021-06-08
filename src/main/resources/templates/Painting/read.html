@@ -67,7 +67,7 @@
     </div>
   </div>
 
-    <input type="hidden" id="sessionUser" th:value="${session.user}">
+    <input type="hidden" id="sessionUser" name="id" th:value="${session.userId}">
     <input type="hidden" class="form-control" name="pno" th:value="${dto.pno}" readonly>
 
 <!-- 리뷰 모달창 -->
@@ -82,10 +82,6 @@
         </div>
 
         <div class="modal-body">
-          <div class="form-group">
-            <label>작성자</label>
-            <input type="text" class="form-control" name="id">
-          </div>
 
           <div class="form-group">
             <label>평점<span class="grade"></span></label>
@@ -150,11 +146,15 @@
       //$(".reviewModal").modal("show");
 
       let reviewModal = $(".reviewModal");
-      let inputMid = $('input[name="id"]');
+      let inputMid = $("#sessionUser");
       let inputText = $('input[name="text"]');
 
       $(".addReviewBtn").click(function(){
-        inputMid.val("");
+
+        if(loginCheck()){
+          return;
+        }
+
         inputText.val("");
 
         $(".removeBtn, .modifyBtn").hide();
@@ -166,7 +166,7 @@
 
       $('.reviewSaveBtn').click(function(){
         let data = {pno:pno, grade:grade, text:inputText.val(), id:inputMid.val()};
-        console.log(data);
+        //console.log(data);
 
         $.ajax({
           url:'/reviews/'+pno,
@@ -268,6 +268,9 @@
     });
 
     function loginCheck(){
+
+      //console.log($("#sessionUser").val());
+
       if($("#sessionUser").val()==""){
         alert("로그인 후 이용해주세요");
         $("#loginBtn").trigger("click");
@@ -278,6 +281,17 @@
     $(".btn-close").on("click",function(){
 
       reviewModal.modal('hide');
+    })
+
+
+    //좋아요 기능
+    $(".likeBtn").on("click",function(){
+      if(loginCheck()){
+        return;
+      }
+
+      alert("추후 업데이트 예정");
+
     })
 
   });

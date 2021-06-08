@@ -48,7 +48,6 @@ public class PaintingController {
     @GetMapping({"/read", "/modify"})
     public void read(long pno, @ModelAttribute("requestDTO") PageRequestDTO requestDTO, Model model){
 
-        log.info("pno: " + pno);
         model.addAttribute("dto", paintingService.getPainting(pno));
     }
 }

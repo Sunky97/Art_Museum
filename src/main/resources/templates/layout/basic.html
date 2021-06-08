@@ -57,18 +57,6 @@
 </div>
 <!-- End Login Modal-->
 <div class="d-flex" id="wrapper">
-  <!-- Sidebar-->
-  <!--<div class="border-end bg-white" id="sidebar-wrapper">
-    <div class="sidebar-heading border-bottom bg-light">Start Bootstrap</div>
-    <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Dashboard</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Shortcuts</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Overview</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Events</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Profile</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="#!">Status</a>
-    </div>
-  </div>-->
   <!-- Page content wrapper-->
   <div id="page-content-wrapper">
     <!-- Top navigation-->
@@ -86,9 +74,10 @@
               </button></li>
           </ul>
 <!--          수정 필요함-->
-          <ul th:unless="${session.user == undefined}">
-            <li class="nav-item">[[${session.user.name}]] 님 환영합니다.
-              <a href="/logout" class="btn btn-info active" role="button">Logout</a>
+          <ul th:unless="${session.user == undefined}" class="navbar-nav ms-auto mt-2 mt-lg-0">
+            <li class="nav-item">
+<!--              [[${session.user.name}]] 님 환영합니다.-->
+              <a href="/logout" class="btn btn-danger" role="button">로그아웃</a>
             </li>
             </ul>
         </div>

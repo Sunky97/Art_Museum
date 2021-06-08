@@ -6,8 +6,8 @@ import javax.persistence.*;
 
 @Entity
 @Getter
-@ToString
 @Builder
+@ToString
 @Table(name = "m_member")
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,10 +17,8 @@ public class Member extends BaseEntity{
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
     private String name;
 
     @Column

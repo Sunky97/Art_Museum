@@ -19,12 +19,8 @@ public class IndexController {
     private HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, PageRequestDTO pageRequestDTO, @LoginUser SessionUser user){
+    public String index(Model model, PageRequestDTO pageRequestDTO){
         model.addAttribute("result", paintingService.getList(pageRequestDTO));
-
-        if(user != null){
-            model.addAttribute("userName", user.getName());
-        }
 
         return "/painting/list";
     }
