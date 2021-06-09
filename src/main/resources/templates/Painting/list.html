@@ -25,7 +25,7 @@
 
                     <div class="post-body">
                         <b>[[${dto.title}]]</b> <br>
-                        <span>평균 ★ [[${dto.avg}]]</span>
+                        <span>평균 ★ [[${#numbers.formatDecimal(dto.avg, 0, 1)}]]</span>
                         <!--[[${dto.viewCnt}]]-->
                     </div>
                 </a>

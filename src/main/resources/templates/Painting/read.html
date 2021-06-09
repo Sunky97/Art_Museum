@@ -23,7 +23,7 @@
         <span>[[${dto.material}]] ・ [[${dto.size}]] ・ [[${dto.year}]]</span><br>
         <span>[[${dto.etc}]]</span>
         <hr>
-        <b>평균 ★[[${dto.avg}]] ([[${dto.reviewCnt}]]명)</b>
+        <b>평균 ★[[${#numbers.formatDecimal(dto.avg, 0, 1)}]] ([[${dto.reviewCnt}]]명)</b>
         <hr>
 
         <!--  찜, 리뷰하기  -->
@@ -130,6 +130,7 @@
   <script>
     $(document).ready(function(e){
 
+      const userId = $("#sessionUser").val();
       let grade = 0;
       let pno = [[${dto.pno}]];
 
@@ -198,7 +199,10 @@
 
             str += '<div class="review-wrap" data-reviewnum='+review.reviewnum+' data-id='+review.id+'>';
             str += '<div class="review-header"><div><b>'+review.name+'</b>   <div class="reviewGrade-wrap"><i class="fa fa-star"></i> '+review.grade+'</div></div>';
-            str += '<div>'+formatTime(review.regDate)+'</div></div> <hr> <h6 class="review-content">'+review.text+'</h6><button>수정・삭제</>button>';
+            str += '<div>'+formatTime(review.regDate)+'</div></div> <hr> <h6 class="review-content">'+review.text+'</h6>';
+            if(userId==review.id){
+                str += '<a href="#" class="modify-btn">수정・삭제</a>';
+            }
             str += '</div>';
           });
           $(".reviewList").html(str);
@@ -209,7 +213,9 @@
 
       let reviewnum;
 
-      $(document).on("click",".review-wrap",function(){
+      $(document).on("click",".modify-btn",function(e){
+
+        e.preventDefault();
 
       if(loginCheck()){
         return;
@@ -218,7 +224,7 @@
         $(".reviewSaveBtn").hide();
         $(".removeBtn , .modifyBtn").show();
 
-        let targetReview = $(this);
+        let targetReview = $(this).parent(".review-wrap");
 
         reviewnum = targetReview.data("reviewnum");
         //console.log("reviewnum: "+reviewnum);
