@@ -10950,7 +10950,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     }
 
 /*구글 로그인 버튼*/
- #customBtn {
+ .customGPlusSignIn {
       margin-left:auto;
       margin-right:auto;
       background: white;
@@ -10961,11 +10961,11 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
       box-shadow: 1px 1px 1px grey;
       white-space: nowrap;
     }
-    #customBtn a {
+    .customGPlusSignIn a {
       color: black;
       text-decoration: none;
     }
-    #customBtn:hover {
+    .customGPlusSignIn:hover {
       cursor: pointer;
     }
     span.label {
@@ -10978,6 +10978,14 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
       vertical-align: middle;
       width: 42px;
       height: 42px;
+    }
+    span.iconNaver {
+      background: url('https://lh3.googleusercontent.com/proxy/hc5W27I8nNnTxAWyz7fDD7DRrSUF6q-4DHnwWfxR2vKkG0MGCpUca_72mK5CXtg6bb5ou76vO8ppfyrN8feQHGoMj76onWhSjA2PVjxs-8duLyILgNW2duN0_rqkzjLQaDPjx9KtfJcDQ3Ffb3tcMgIqwaYP2e14ji1ZufVypEK1S0djRWdZwcV85EmsAyvPe3Q7j5MZTxt-XvZ6Rz5muk-rlXSDSY3Lq3c');
+      display: inline-block;
+      vertical-align: middle;
+      width: 42px;
+      height: 42px;
+      background-size: cover;
     }
     span.buttonText {
       display: inline-block;
