@@ -10949,53 +10949,17 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
         color: gray;
     }
 
-/*구글 로그인 버튼*/
+/*소셜 로그인 버튼*/
  .customGPlusSignIn {
       margin-left:auto;
       margin-right:auto;
-      background: white;
-      color: #444;
-      width: 190px;
-      border-radius: 5px;
-      border: thin solid #888;
-      box-shadow: 1px 1px 1px grey;
+      width: 250px;
       white-space: nowrap;
     }
-    .customGPlusSignIn a {
-      color: black;
-      text-decoration: none;
-    }
-    .customGPlusSignIn:hover {
-      cursor: pointer;
-    }
-    span.label {
-      font-family: serif;
-      font-weight: normal;
-    }
-    span.icon {
-      background: url('https://developers.google.com/identity/sign-in/g-normal.png') transparent 5px 50% no-repeat;
-      display: inline-block;
-      vertical-align: middle;
-      width: 42px;
-      height: 42px;
-    }
-    span.iconNaver {
-      background: url('https://lh3.googleusercontent.com/proxy/hc5W27I8nNnTxAWyz7fDD7DRrSUF6q-4DHnwWfxR2vKkG0MGCpUca_72mK5CXtg6bb5ou76vO8ppfyrN8feQHGoMj76onWhSjA2PVjxs-8duLyILgNW2duN0_rqkzjLQaDPjx9KtfJcDQ3Ffb3tcMgIqwaYP2e14ji1ZufVypEK1S0djRWdZwcV85EmsAyvPe3Q7j5MZTxt-XvZ6Rz5muk-rlXSDSY3Lq3c');
-      display: inline-block;
-      vertical-align: middle;
-      width: 42px;
-      height: 42px;
-      background-size: cover;
-    }
-    span.buttonText {
-      display: inline-block;
-      vertical-align: middle;
-      padding-left: 42px;
-      padding-right: 42px;
-      font-size: 14px;
-      font-weight: bold;
-      /* Use the Roboto font that is loaded in the <head> */
-      font-family: 'Roboto', sans-serif;
+
+    .customGPlusSignIn img {
+        width: 100%;
+        height: auto;
     }
 
 #load-Button-Box {
