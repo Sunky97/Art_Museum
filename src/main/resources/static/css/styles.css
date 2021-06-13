@@ -10948,6 +10948,9 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
         font-size: 14px;
         color: gray;
     }
+    .viewCnt-wrap {
+        float: right;
+    }
 
 /*소셜 로그인 버튼*/
  .customGPlusSignIn {
