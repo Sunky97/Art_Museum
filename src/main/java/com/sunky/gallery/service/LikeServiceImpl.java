@@ -19,4 +19,5 @@ public class LikeServiceImpl implements LikeService{
     public void remove(Long lno) {
 
     }
+
 }
