@@ -30,4 +30,5 @@ public class PaintingRestController {
         requestDTO.setPage((int)param.get("page"));
         return paintingService.getList(requestDTO);
     }
+
 }
