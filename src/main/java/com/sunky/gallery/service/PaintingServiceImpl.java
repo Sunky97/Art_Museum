@@ -86,4 +86,5 @@ public class PaintingServiceImpl implements PaintingService{
 
         return entitiesToDTO(painting, paintingImageList, avg, reviewCnt);
     }
+
 }

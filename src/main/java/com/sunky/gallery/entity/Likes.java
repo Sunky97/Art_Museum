@@ -8,7 +8,6 @@ import javax.persistence.*;
 @Getter
 @Builder
 @NoArgsConstructor
-@AllArgsConstructor
 @ToString
 public class Likes {
 
@@ -22,4 +21,10 @@ public class Likes {
     @ManyToOne(fetch = FetchType.LAZY)
     private Painting painting;
 
+    @Builder
+    public Likes(Long lno,Member member, Painting painting) {
+        this.lno = lno;
+        this.member = member;
+        this.painting = painting;
+    }
 }

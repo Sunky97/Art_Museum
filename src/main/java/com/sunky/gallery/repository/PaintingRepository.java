@@ -26,4 +26,12 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
     @Modifying
     @Query("UPDATE Painting p SET p.viewCnt = p.viewCnt+1 WHERE p.pno = :pno ")
     int updateViewCnt(Long pno);
+
+    @Modifying
+    @Query("UPDATE Painting p SET p.likeCnt = p.likeCnt+1 WHERE p.pno = :pno")
+    int upLike(Long pno);
+
+    @Modifying
+    @Query("UPDATE Painting p SET p.likeCnt = p.likeCnt-1 WHERE p.pno = :pno")
+    int downLike(Long pno);
 }
