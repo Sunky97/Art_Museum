@@ -8,14 +8,14 @@ import com.sunky.gallery.entity.Painting;
 
 public interface LikeService {
 
-    boolean addLike(LikeDTO likeDTO);
+    void addLike(LikeDTO likeDTO);
 
     boolean removeLike(Long lno);
 
     default Likes dtoToEntity(LikeDTO mLikeDTO){
 
         Likes likes = Likes.builder()
-                .member(Member.builder().id(mLikeDTO.getMid()).build())
+                .member(Member.builder().id(mLikeDTO.getId()).build())
                 .painting(Painting.builder().pno(mLikeDTO.getPno()).build())
                 .build();
 

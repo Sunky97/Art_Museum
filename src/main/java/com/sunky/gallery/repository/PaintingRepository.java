@@ -7,6 +7,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -27,10 +28,12 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
     @Query("UPDATE Painting p SET p.viewCnt = p.viewCnt+1 WHERE p.pno = :pno ")
     int updateViewCnt(Long pno);
 
+    @Transactional
     @Modifying
     @Query("UPDATE Painting p SET p.likeCnt = p.likeCnt+1 WHERE p.pno = :pno")
     int upLike(Long pno);
 
+    @Transactional
     @Modifying
     @Query("UPDATE Painting p SET p.likeCnt = p.likeCnt-1 WHERE p.pno = :pno")
     int downLike(Long pno);

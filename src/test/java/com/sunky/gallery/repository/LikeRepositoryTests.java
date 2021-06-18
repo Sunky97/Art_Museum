@@ -24,7 +24,7 @@ public class LikeRepositoryTests {
     @Test
     public void 좋아요_등록() {
 
-        LikeDTO likeDTO = new LikeDTO(1L,1L);
+        LikeDTO likeDTO = new LikeDTO(1L,6L);
 
         System.out.println("likeDTO 값: "+likeDTO);
         likeService.addLike(likeDTO);

@@ -21,20 +21,19 @@ public class LikeServiceImpl implements LikeService{
 
     @Override
     @Transactional
-    public boolean addLike(LikeDTO likeDTO) {
+    public void addLike(LikeDTO likeDTO) {
 
-        if(isNotAlreadyLike(likeDTO)){
+//        if(isNotAlreadyLike(likeDTO)){
             Likes likes = dtoToEntity(likeDTO);
             likeRepository.save(likes);
             paintingRepository.upLike(likeDTO.getPno());
-            return true;
-        }else {
-            likeRepository.deleteById(likeDTO.getMid());
-            paintingRepository.downLike(likeDTO.getPno());
-        }
+//        }else {
+//            likeRepository.deleteById(likeDTO.getMid());
+//            paintingRepository.downLike(likeDTO.getPno());
+//        }
 
 
-        return false;
+//        return false;
 
     }
 
@@ -45,7 +44,7 @@ public class LikeServiceImpl implements LikeService{
     }
 
     private boolean isNotAlreadyLike(LikeDTO likeDTO){
-        return likeRepository.findByMemberAndPainting(likeDTO.getMid(), likeDTO.getPno()).isPresent();
+        return likeRepository.findByMemberAndPainting(likeDTO.getId(), likeDTO.getPno()).isPresent();
     }
 
 

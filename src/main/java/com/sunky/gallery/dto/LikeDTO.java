@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 public class LikeDTO {
 
-    private Long mid;
+    private Long id;
     private Long pno;
 
 }

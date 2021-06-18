@@ -20,7 +20,7 @@ import java.util.stream.IntStream;
 public class PaintingRepositoryTests {
 
     @Autowired
-    private  PaintingRepository paintingRepository;
+    private PaintingRepository paintingRepository;
 
     @Autowired
     private PaintingImageRepository imageRepository;
@@ -72,5 +72,10 @@ public class PaintingRepositoryTests {
         for(Object[] arr :result){
             System.out.println(Arrays.toString(arr));
         }
+    }
+
+    @Test
+    public void 좋아요_카운트(){
+        paintingRepository.upLike(1L);
     }
 }
