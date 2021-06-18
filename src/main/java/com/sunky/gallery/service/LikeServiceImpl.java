@@ -29,7 +29,7 @@ public class LikeServiceImpl implements LikeService{
             paintingRepository.upLike(likeDTO.getPno());
             return true;
         }else {
-            likeRepository.deleteById(likeDTO.get);
+            likeRepository.deleteById(likeDTO.getMid());
             paintingRepository.downLike(likeDTO.getPno());
         }
 
@@ -41,6 +41,7 @@ public class LikeServiceImpl implements LikeService{
     @Override
     public boolean removeLike(Long lno) {
 
+        return true;
     }
 
     private boolean isNotAlreadyLike(LikeDTO likeDTO){

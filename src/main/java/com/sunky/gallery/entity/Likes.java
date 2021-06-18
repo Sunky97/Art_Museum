@@ -12,7 +12,7 @@ import javax.persistence.*;
 public class Likes {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long lno;
 
     @ManyToOne(fetch = FetchType.LAZY)
