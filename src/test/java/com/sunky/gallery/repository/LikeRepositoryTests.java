@@ -16,32 +16,12 @@ public class LikeRepositoryTests {
 
     @Autowired
     private LikeRepository likeRepository;
-    @Autowired
-    private LikeService likeService;
-
-    @Commit
-    @Transactional
-    @Test
-    public void 좋아요_등록() {
-
-        LikeDTO likeDTO = new LikeDTO(1L,6L);
-
-        System.out.println("likeDTO 값: "+likeDTO);
-        likeService.addLike(likeDTO);
-    }
-
-    @Test
-    public void 좋아요_조회() {
-        Long id = 1L;
-        Long pno = 1L;
-        likeRepository.findByMemberAndPainting(id,pno);
-    }
 
     @Test
     public void likes_register(){
         Likes likes = Likes.builder()
-                .member(Member.builder().id(4L).build())
-                .painting(Painting.builder().pno(4L).build())
+                .member(Member.builder().id(1L).build())
+                .painting(Painting.builder().pno(8L).build())
                 .build();
         likeRepository.save(likes);
     }

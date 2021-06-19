@@ -15,6 +15,7 @@ public interface LikeService {
     default Likes dtoToEntity(LikeDTO mLikeDTO){
 
         Likes likes = Likes.builder()
+                .lno(mLikeDTO.getLno())
                 .member(Member.builder().id(mLikeDTO.getId()).build())
                 .painting(Painting.builder().pno(mLikeDTO.getPno()).build())
                 .build();

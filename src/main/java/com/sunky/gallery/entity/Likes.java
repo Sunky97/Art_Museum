@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Builder
 @NoArgsConstructor
 @ToString
-public class Likes {
+public class Likes extends BaseEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
