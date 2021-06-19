@@ -24,8 +24,8 @@ public class LikeServiceImpl implements LikeService{
     public void addLike(LikeDTO likeDTO) {
 
 //        if(isNotAlreadyLike(likeDTO)){
-            Likes likes = dtoToEntity(likeDTO);
-            likeRepository.save(likes);
+//            Likes likes = dtoToEntity(likeDTO);
+            //likeRepository.save();
             paintingRepository.upLike(likeDTO.getPno());
 //        }else {
 //            likeRepository.deleteById(likeDTO.getMid());

@@ -10,7 +10,7 @@ import javax.persistence.*;
 @ToString
 @Table(name = "m_member")
 @NoArgsConstructor
-@AllArgsConstructor
+//@AllArgsConstructor
 public class Member extends BaseEntity{
 
     @Id
@@ -29,7 +29,8 @@ public class Member extends BaseEntity{
     private Role role;
 
     @Builder
-    public Member(String name, String email, String picture, Role role){
+    public Member(Long id,String name, String email, String picture, Role role){
+        this.id = id;
         this.name = name;
         this.email = email;
         this.picture = picture;

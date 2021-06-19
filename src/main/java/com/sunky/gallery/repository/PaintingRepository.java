@@ -31,10 +31,10 @@ public interface PaintingRepository extends JpaRepository<Painting, Long> {
     @Transactional
     @Modifying
     @Query("UPDATE Painting p SET p.likeCnt = p.likeCnt+1 WHERE p.pno = :pno")
-    int upLike(Long pno);
+    void upLike(Long pno);
 
     @Transactional
     @Modifying
     @Query("UPDATE Painting p SET p.likeCnt = p.likeCnt-1 WHERE p.pno = :pno")
-    int downLike(Long pno);
+    void downLike(Long pno);
 }
