@@ -19,10 +19,12 @@ public class LikeRepositoryTests {
 
     @Test
     public void likes_register(){
+
         Likes likes = Likes.builder()
                 .member(Member.builder().id(1L).build())
                 .painting(Painting.builder().pno(8L).build())
                 .build();
+
         likeRepository.save(likes);
     }
 }
