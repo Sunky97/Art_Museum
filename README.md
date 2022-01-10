@@ -1,4 +1,4 @@
-# Art_Museum
+# ART PEDIA
 
 <img src="https://user-images.githubusercontent.com/71059456/121884098-7db32380-cd4d-11eb-89a6-072551c28144.png" width="500px">
 
